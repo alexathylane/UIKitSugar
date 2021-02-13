@@ -1,3 +1,3 @@
 # UIKitSugar
 
-A description of this package.
+Various helper code & syntatic sugar that makes it easier to work with Apple's UIKit.
