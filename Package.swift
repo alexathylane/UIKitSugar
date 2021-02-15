@@ -9,7 +9,7 @@ import PackageDescription
 let package = Package(
     name: "UIKitSugar",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v13)
     ],
     products: [
         // Products define the executables and libraries a package produces,
