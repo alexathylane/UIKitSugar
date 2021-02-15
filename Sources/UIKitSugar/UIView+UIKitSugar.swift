@@ -1,6 +1,12 @@
 import UIKit
 
 public extension UIView {
+  /// Convenience method that both adds a subview and sets the subview's `translatesAutoresizingMaskIntoConstraints` property.
+  func addSubview(_ view: UIView, subviewTranslatesAutoresizingMaskIntoConstraints: Bool) {
+    view.translatesAutoresizingMaskIntoConstraints = subviewTranslatesAutoresizingMaskIntoConstraints
+    addSubview(view)
+  }
+  
   /// Returns a collection of Auto Layout constraints for pinning the receiver equal to the edges of a layout guide.
   ///
   /// - Parameter layoutGuide The layout guide for the constraints to make the receiver relative to.
