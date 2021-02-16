@@ -33,14 +33,16 @@ public extension UIView {
     return constraints
   }
   
-  /// Returns the first ancestor superview of the specified type.
-  func firstSuperview<T>(ofKind kind: T.Type) -> T? where T: UIView {
+  /// Returns the first ancestor superview that is a type of `kind` and satisfies the `where` clause.
+  func firstSuperview<T: UIView>(ofKind kind: T.Type, where block: ((T) -> Bool)? = nil) -> T? {
     var view: UIView? = self
     while view != nil {
-      if let kindView = view as? T {
-        return kindView
-      }
       view = view?.superview
+      guard let view = view as? T else { continue }
+      guard let block = block else { return view }
+      if block(view) {
+        return view
+      }
     }
     return nil
   }
