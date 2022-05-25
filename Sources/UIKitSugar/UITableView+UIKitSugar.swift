@@ -44,6 +44,31 @@ public extension UITableView {
     }
     return view
   }
+    
+    // MARK: - Refreshing & loading states
+    
+    /// Adds a refresh control to the receiver with a timeout interval if specified.
+    func addRefreshControl(_ refreshControl: UIRefreshControl, timeout: TimeInterval? = nil) {
+        if let timeout = timeout {
+            refreshControl.setTimeout(timeout)
+        }
+        self.refreshControl = refreshControl
+        // Workaround for bug where refresh control is on top of table view
+        refreshControl.layer.zPosition = -1
+    }
+    
+    /// Adds a loading indicator to the receiver with the specified `style`.
+    func addLoadingIndicator(_ style: UIActivityIndicatorView.Style) {
+        let activityView = UIActivityIndicatorView(style: style)
+        backgroundView = activityView
+        activityView.startAnimating()
+    }
+    
+    /// Removes any loading indicator if set on the receiver.
+    func removeLoadingIndicator() {
+        guard let _ = backgroundView as? UIActivityIndicatorView else { return }
+        backgroundView = nil
+    }
 }
 
 public extension UITableViewCell {
